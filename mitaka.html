@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitaka - 3D Planetarium</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; overflow: hidden; font-family: sans-serif; }
+        #canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            cursor: crosshair;
+        }
+        #loading {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 18px;
+            text-align: center;
+            z-index: 10;
+            background: #000;
+        }
+        #loading .progress {
+            margin-top: 16px;
+            width: 300px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+        }
+        #loading .progress-bar {
+            height: 100%;
+            background: #4af;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.2s;
+        }
+        #loading .status {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+        #fullscreen-prompt {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            z-index: 5;
+            cursor: pointer;
+            padding: 8px 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            background: rgba(0,0,0,0.5);
+            transition: opacity 1s;
+        }
+        #fullscreen-prompt:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.6);
+        }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <img id="splash" src="mitaka_splash.png" alt="" style="max-width:512px; width:80%; display:block; margin:0 auto 16px;">
+        <div>Mitaka - 3D Planetarium</div>
+        <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+        <div class="status" id="status">Initializing...</div>
+    </div>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+    <div id="fullscreen-prompt" class="hidden">Click here or press F for fullscreen</div>
+
+    <script>
+        var Module = {
+            canvas: (function() {
+                var canvas = document.getElementById('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                return canvas;
+            })(),
+            onRuntimeInitialized: function() {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('canvas').focus();
+                // Show fullscreen prompt briefly
+                var prompt = document.getElementById('fullscreen-prompt');
+                prompt.classList.remove('hidden');
+                setTimeout(function() {
+                    prompt.style.opacity = '0';
+                    setTimeout(function() { prompt.classList.add('hidden'); }, 1000);
+                }, 5000);
+            },
+            setStatus: function(text) {
+                var el = document.getElementById('status');
+                if (el) el.textContent = text;
+                // Parse download progress
+                var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+                if (m) {
+                    var pct = (parseFloat(m[2]) / parseFloat(m[4])) * 100;
+                    var bar = document.getElementById('progress-bar');
+                    if (bar) bar.style.width = pct + '%';
+                }
+            },
+            print: function(text) { console.log(text); },
+            printErr: function(text) { console.error(text); }
+        };
+
+        // Fullscreen prompt click handler
+        document.getElementById('fullscreen-prompt').addEventListener('click', function() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.requestFullscreen) {
+                canvas.requestFullscreen();
+            } else if (canvas.webkitRequestFullscreen) {
+                canvas.webkitRequestFullscreen();
+            }
+            this.classList.add('hidden');
+        });
+
+        window.addEventListener('resize', function() {
+            // Don't resize canvas from JS when in fullscreen — C++ handles it
+            if (document.fullscreenElement) return;
+            var canvas = document.getElementById('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+    <script async type="text/javascript" src="mitaka.js"></script>
+</body>
+</html>
