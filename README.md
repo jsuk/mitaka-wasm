@@ -3,8 +3,8 @@
 Pre-built WebAssembly distribution of [Mitaka](https://github.com/jsuk/mitaka), a four-dimensional digital universe viewer developed by Tsunehiko Kato and the [4D2U Project](https://4d2u.nao.ac.jp/) at the National Astronomical Observatory of Japan (NAOJ).
 
 ## Usage
-
-Serve this directory with any HTTP server:
+Open https://jsuk.github.io/mitaka-wasm/mitaka.html or
+Serve this directory with any HTTP server in your local environment:
 
 ```bash
 python3 -m http.server 8080
