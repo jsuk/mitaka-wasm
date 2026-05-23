@@ -1,6 +1,6 @@
 # Mitaka WASM
 
-Pre-built WebAssembly distribution of [Mitaka](https://github.com/jsuk/mitaka), a four-dimensional digital universe viewer developed by Tsunehiko Kato and the [4D2U Project](https://4d2u.nao.ac.jp/) at the National Astronomical Observatory of Japan (NAOJ).
+Unofficial WebAssembly port of [Mitaka 1.3.1](https://4d2u.nao.ac.jp/mitaka/), a four-dimensional digital universe viewer developed by Tsunehiko Kato and the [4D2U Project](https://4d2u.nao.ac.jp/) at the National Astronomical Observatory of Japan (NAOJ). Built from the MIT-licensed source via Emscripten. **Not affiliated with or endorsed by NAOJ.**
 
 ## Usage
 Open <https://jsuk.github.io/mitaka-wasm/mitaka.html> or
@@ -26,6 +26,12 @@ Then open <http://localhost:8080/mitaka.html> in a modern web browser with WebGL
 - **Original Version**: 1.3.1 (March 4, 2016)
 - **Original Website**: <https://4d2u.nao.ac.jp/mitaka/>
 
+## Support
+
+This is an unofficial port. Please **do not contact NAOJ or the 4D2U Project** about this build — they are not responsible for it and explicitly do not answer source-code inquiries. File issues at <https://github.com/jsuk/mitaka-wasm/issues> instead.
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Mitaka is licensed under the MIT License — see [LICENSE](LICENSE).
+
+This build statically links several third-party libraries (libjpeg, libpng, zlib, FreeType, GLEW) and bundles astronomical data files. See [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) for the required attributions.
