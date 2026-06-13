@@ -18,8 +18,8 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/home/jsuk/git/mitaka-clone/build/mitaka_optional-dcc24fe.data';
-      var REMOTE_PACKAGE_BASE = 'mitaka_optional-dcc24fe.data';
+      var PACKAGE_NAME = '/home/jsuk/git/mitaka-clone/build/mitaka_optional-0c21c07.data';
+      var REMOTE_PACKAGE_BASE = 'mitaka_optional-0c21c07.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
       var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
 
@@ -40,7 +40,7 @@
 
         const chunks = [];
         const headers = response.headers;
-        const total = Number(headers.get('Content-Length') || packageSize);
+        const total = packageSize;
         let loaded = 0;
 
         Module['setStatus'] && Module['setStatus']('Downloading data...');
@@ -107,9 +107,9 @@ Module['FS_createPath']("/", "data", true, true);
         Module['FS_createDataFile'](name, null, data, true, true, true);
         Module['removeRunDependency'](`fp ${name}`);
           }
-          Module['removeRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-dcc24fe.data');
+          Module['removeRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-0c21c07.data');
       }
-      Module['addRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-dcc24fe.data');
+      Module['addRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-0c21c07.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
