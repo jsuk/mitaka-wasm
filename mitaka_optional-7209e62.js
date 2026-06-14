@@ -18,8 +18,8 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/home/jsuk/git/mitaka-clone/build/mitaka_optional-90c784f.data';
-      var REMOTE_PACKAGE_BASE = 'mitaka_optional-90c784f.data';
+      var PACKAGE_NAME = '/home/jsuk/git/mitaka-clone/build/mitaka_optional-7209e62.data';
+      var REMOTE_PACKAGE_BASE = 'mitaka_optional-7209e62.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
       var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
 
@@ -107,9 +107,9 @@ Module['FS_createPath']("/", "data", true, true);
         Module['FS_createDataFile'](name, null, data, true, true, true);
         Module['removeRunDependency'](`fp ${name}`);
           }
-          Module['removeRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-90c784f.data');
+          Module['removeRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-7209e62.data');
       }
-      Module['addRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-90c784f.data');
+      Module['addRunDependency']('datafile_/home/jsuk/git/mitaka-clone/build/mitaka_optional-7209e62.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
